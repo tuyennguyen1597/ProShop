@@ -4,7 +4,10 @@
   "description": "MERN shopping car",
   "main": "index.js",
   "scripts": {
-    "start": "node back-end/server.js"
+    "start": "node back-end/server.js",
+    "server": "nodemon back-end/server",
+    "client": "npm start --prefix front-end",
+    "dev": "concurrently \"npm run server\" \"npm run client\"" 
   },
   "repository": {
     "type": "git",
@@ -18,5 +21,9 @@
   "homepage": "https://github.com/tuyennguyen1597/ProShop#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.0",
+    "nodemon": "^2.0.9"
   }
 }

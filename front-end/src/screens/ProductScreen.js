@@ -1,10 +1,18 @@
-import React from 'react';
-import { Button, Col, Container, Image, ListGroup, Row } from 'react-bootstrap';
-import products from '../products';
+import React, { useEffect, useState } from 'react';
+import { Button, Col, Image, ListGroup, Row } from 'react-bootstrap';
+import axios from 'axios';
 import Rating from '../components/Rating';
 
 export const ProductScreen = ({ match }) => {
-  const product = products.find((product) => product._id === match.params._id);
+  const [product, setProduct] = useState({});
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const { data } = await axios.get(`/api/products/${match.params._id}`);
+      setProduct(data);
+    }
+    
+    fetchProduct()
+  }, [match]);
   return (
     <div>
       <Button className='my-3' variant='light'>
@@ -33,7 +41,9 @@ export const ProductScreen = ({ match }) => {
             <ListGroup.Item>
               <Row>
                 <Col>Price</Col>
-                <Col><strong>${product.price}</strong></Col>
+                <Col>
+                  <strong>${product.price}</strong>
+                </Col>
               </Row>
             </ListGroup.Item>
             <ListGroup.Item>
@@ -45,7 +55,7 @@ export const ProductScreen = ({ match }) => {
               </Row>
             </ListGroup.Item>
           </ListGroup>
-        
+
           <ListGroup>
             <Button
               className='btn-block'
