@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "MERN shopping car",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node back-end/server.js",
     "server": "nodemon back-end/server",
     "client": "npm start --prefix front-end",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node back-end/seeder",
+    "data:destroy": "node back-end/seeder -d"
   },
   "repository": {
     "type": "git",
@@ -20,8 +23,11 @@
   },
   "homepage": "https://github.com/tuyennguyen1597/ProShop#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
     "dotenv": "^10.0.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.13.2"
   },
   "devDependencies": {
     "concurrently": "^6.2.0",
